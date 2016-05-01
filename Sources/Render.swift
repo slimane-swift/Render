@@ -24,7 +24,7 @@ public struct Render: AsyncResponderConvertible {
         self.path = path
     }
 
-    public func respond(response: Response, result: (Void throws -> Response) -> Void){
+    public func respond(_ response: Response, result: (Void throws -> Response) -> Void){
         engine.render(viewPath + "/" + path) { f in
             var response = response
             result {
