@@ -18,13 +18,13 @@ public struct Render: AsyncResponderConvertible {
     let path: String
     let viewPath: String
 
-    public init(engine: Renderable, viewPath: String = NSFileManager.defaultManager().currentDirectoryPath + "/views", path: String){
+    public init(engine: Renderable, viewPath: String = NSFileManager.default().currentDirectoryPath + "/views", path: String){
         self.engine = engine
         self.viewPath = viewPath
         self.path = path
     }
 
-    public func respond(_ response: Response, result: (Void throws -> Response) -> Void){
+    public func respond(_ response: Response, result: ((Void) throws -> Response) -> Void){
         engine.render(viewPath + "/" + path) { f in
             var response = response
             result {
