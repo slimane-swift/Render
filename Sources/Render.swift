@@ -13,12 +13,18 @@
 @_exported import Renderable
 import Foundation
 
+#if os(Linux)
+let currentDirectoryPath = NSFileManager.defaultManager().currentDirectoryPath
+#else
+let currentDirectoryPath = NSFileManager.default().currentDirectoryPath
+#endif
+
 public struct Render: AsyncResponderConvertible {
     let engine: Renderable
     let path: String
     let viewPath: String
 
-    public init(engine: Renderable, viewPath: String = NSFileManager.default().currentDirectoryPath + "/views", path: String){
+    public init(engine: Renderable, viewPath: String = currentDirectoryPath + "/views", path: String){
         self.engine = engine
         self.viewPath = viewPath
         self.path = path
